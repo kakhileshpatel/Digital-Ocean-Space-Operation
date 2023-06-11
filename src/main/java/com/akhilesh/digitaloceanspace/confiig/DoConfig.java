@@ -28,21 +28,21 @@ public class DoConfig {
 
 	@Bean
 	public S3Client s3Client() {
-		String accessKey = "DO00K94UMWWG9ZNFEN6H";
-        String secretKey = "VUrjqUkM+FwEKYMckLKXkm8WfbIRYR1f87VamHImdVM";
+		//String accessKey = "DO00K94UMWWG9ZNFEN6H";
+       // String secretKey = "VUrjqUkM+FwEKYMckLKXkm8WfbIRYR1f87VamHImdVM";
 
         // Set your DigitalOcean Spaces endpoint URL and region
-        String endpoint = "https://nyc3.digitaloceanspaces.com";
-        String region = "nyc3";
+        //String endpoint = "https://nyc3.digitaloceanspaces.com";
+        //String region = "nyc3";
 
         
 
         // Create S3 client
-        AwsBasicCredentials awsCredentials = AwsBasicCredentials.create(accessKey, secretKey);
+        AwsBasicCredentials awsCredentials = AwsBasicCredentials.create(doSpaceKey, doSpaceSecret);
         
         S3Client s3Client = S3Client.builder()
-        .region(Region.of(region))
-        .endpointOverride(URI.create(endpoint))
+        .region(Region.of(doSpaceRegion))
+        .endpointOverride(URI.create(doSpaceEndpoint))
         .credentialsProvider(StaticCredentialsProvider.create(awsCredentials))
         .build();
 		return s3Client;

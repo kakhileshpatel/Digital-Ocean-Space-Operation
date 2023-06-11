@@ -3,6 +3,7 @@ package com.akhilesh.digitaloceanspace.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,18 @@ public class ContentController<T> {
 		boolean result = false;
 		try {
 			result = storageService.delete(fileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Internal server error.");
+		}
+		return result;
+	}
+	
+	@GetMapping("/dexist")
+	public boolean isExistContent(@RequestParam("fileName") String fileName) throws Exception {
+		boolean result = false;
+		try {
+			result = storageService.isObjectExist(fileName);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception("Internal server error.");

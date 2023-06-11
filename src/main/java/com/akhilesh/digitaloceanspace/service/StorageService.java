@@ -8,4 +8,6 @@ public interface StorageService {
 
 	boolean delete(String key) throws Exception;
 
+	boolean isObjectExist(String key) throws Exception;
+
 }
